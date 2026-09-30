@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    margin: 0;
+    padding: 40px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 2.4em;
+    margin-bottom: 25px;
+  }
+
+  .logout {
+    display: inline-block;
+    background: #ff5c5c;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  .logout:hover {
+    background: #ff3030;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+
+  th, td {
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  th {
+    background: #2575fc;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #eaf1ff;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>📊 Admin Dashboard</h1>
+    <div style="text-align: right; margin-bottom: 15px;">
+      <a class="logout" href="{{ url_for('home') }}">🚪 Logout</a>
+    </div>
+
+    <table>
+      <tr>
+        <th>Timestamp</th>
+        <th>Student Name</th>
+        <th>Q1 Answer</th>
+        <th>Q2 Answer</th>
+        <th>Active %</th>
+        <th>Drowsy %</th>
+        <th>Inattentive %</th>
+        <th>Blink Count</th> <!-- ✅ Added -->
+      </tr>
+      {% for sub in submissions %}
+      <tr>
+        <td>{{ sub.timestamp }}</td>
+        <td>{{ sub.student_name }}</td>
+        <td>{{ sub.q1 }}</td>
+        <td>{{ sub.q2 }}</td>
+        <td>{{ sub.active_percent }}%</td>
+        <td>{{ sub.drowsy_percent }}%</td>
+        <td>{{ sub.inattentive_percent }}%</td>
+        <td>{{ sub.blink_count }}</td> <!-- ✅ Added -->
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+</body>
+</html>

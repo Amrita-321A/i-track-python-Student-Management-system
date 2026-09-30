@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | iTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #87CEFA, #f0f8ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #333;
+      position: relative;
+    }
+
+    /* Soft overlay for consistency with homepage */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255,255,255,0.2);
+      z-index: 0;
+    }
+
+    .login-box {
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 35px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      width: 360px;
+      text-align: center;
+      z-index: 2;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: #3a6073;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #3a7bd5;
+      box-shadow: 0 0 5px rgba(58, 123, 213, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #3a7bd5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #285e8e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    p {
+      color: red;
+      margin-top: 15px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <form action="/login" method="POST">
+      <input type="text" name="username" placeholder="Enter Username" required>
+      <input type="password" name="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
+    </form>
+    {% if error %}
+      <p>{{ error }}</p>
+    {% endif %}
+    <footer>© 2025 iTrack Exam Portal</footer>
+  </div>
+</body>
+</html>

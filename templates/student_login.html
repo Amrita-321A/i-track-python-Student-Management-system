@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login | iTrack</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #87CEFA, #f0f8ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255,255,255,0.2);
+      z-index: 0;
+    }
+
+    .icon {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.95;
+      animation: float ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 50px 40px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      width: 380px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 2;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      color: #3a6073;
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 14px;
+      border: 1px solid #cfd8dc;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #3a7bd5;
+      box-shadow: 0 0 10px rgba(58, 123, 213, 0.2);
+    }
+
+    button {
+      background: #3a7bd5;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #285e8e;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(58, 123, 213, 0.3);
+    }
+
+    .error {
+      color: #d32f2f;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    p {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    a {
+      color: #3a7bd5;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    @media(max-width:480px){
+      .container{padding:40px 20px;}
+      h1{font-size:24px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Student Login</h1>
+    <form method="POST">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    <p>Not registered? <a href="{{ url_for('student_register') }}">Register here</a></p>
+    <footer>© 2025 iTrack Exam Portal</footer>
+  </div>
+
+  <!-- Floating educational icons -->
+  <img src="https://img.icons8.com/color/64/graduation-cap.png" class="icon">
+  <img src="https://img.icons8.com/color/64/book.png" class="icon">
+  <img src="https://img.icons8.com/color/64/pencil.png" class="icon">
+  <img src="https://img.icons8.com/color/64/abc.png" class="icon">
+  <img src="https://img.icons8.com/color/64/teacher.png" class="icon">
+  <img src="https://img.icons8.com/color/64/science.png" class="icon">
+  <img src="https://img.icons8.com/color/64/math.png" class="icon">
+  <img src="https://img.icons8.com/color/64/art.png" class="icon">
+  <img src="https://img.icons8.com/color/64/laptop.png" class="icon">
+  <img src="https://img.icons8.com/color/64/earth-globe.png" class="icon">
+  <img src="https://img.icons8.com/color/64/microscope.png" class="icon">
+  <img src="https://img.icons8.com/color/64/calculator.png" class="icon">
+
+  <script>
+    const icons = document.querySelectorAll('.icon');
+    const safeZone = 400;
+    const containerCenterX = window.innerWidth / 2;
+    const containerCenterY = window.innerHeight / 2;
+
+    icons.forEach(icon => {
+      let x, y;
+      do {
+        x = Math.random() * window.innerWidth;
+        y = Math.random() * window.innerHeight;
+      } while (
+        x > containerCenterX - safeZone / 2 &&
+        x < containerCenterX + safeZone / 2 &&
+        y > containerCenterY - safeZone / 2 &&
+        y < containerCenterY + safeZone / 2
+      );
+
+      icon.style.left = x + 'px';
+      icon.style.top = y + 'px';
+
+      const size = 50 + Math.random() * 30;
+      icon.style.width = size + 'px';
+      icon.style.height = size + 'px';
+
+      icon.style.animationDuration = (6 + Math.random() * 8) + 's';
+    });
+  </script>
+</body>
+</html>

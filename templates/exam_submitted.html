@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to right, #edf2f7, #e2e8f0);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .summary-container {
+        background: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+    }
+
+    h2 {
+        color: #1f2937;
+        margin-bottom: 25px;
+    }
+
+    .stat-card {
+        background: #f7fafc;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin: 10px 0;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .stat-card span {
+        font-weight: 700;
+        color: #4CAF50;
+    }
+
+    .logout-btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 25px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .logout-btn:hover {
+        background-color: #45a049;
+    }
+
+    @media (max-width: 480px) {
+        .summary-container {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="summary-container">
+        <h2>Exam Submitted Successfully!</h2>
+
+        <div class="stat-card">
+            <div>Student:</div>
+            <div><span>{{ username }}</span></div>
+        </div>
+
+        <div class="stat-card">
+            <div>Active:</div>
+            <div><span>{{ active_percent }}%</span></div>
+        </div>
+
+        <div class="stat-card">
+            <div>Drowsy:</div>
+            <div><span>{{ drowsy_percent }}%</span></div>
+        </div>
+
+        <div class="stat-card">
+            <div>Inattentive:</div>
+            <div><span>{{ inattentive_percent }}%</span></div>
+        </div>
+
+        <div class="stat-card">
+            <div>Blink Count:</div>
+            <div><span>{{ blink_count }}</span></div>
+        </div>
+
+       
+
+   
+
+
+
+        <a href="{{ url_for('home') }}" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>
